@@ -873,7 +873,69 @@ void main() {
     expect(commands, contains('Browser.close'));
   });
 
+<<<<<<< HEAD
   testWithoutContext('Chromium close handles a SocketException when connecting to Chrome', () async {
+=======
+  testWithoutContext('chrome.close can recover if getTab throws an HttpException', () async {
+    final BufferLogger logger = BufferLogger.test();
+    final FakeChromeConnectionWithTab chromeConnection = FakeChromeConnectionWithTab(
+      onGetTab: () {
+        throw io.HttpException(
+        'Connection closed before full header was received',
+        uri: Uri.parse('http://localhost:52097/json'),);
+      },
+    );
+    final ChromiumLauncher chromiumLauncher = ChromiumLauncher(
+      fileSystem: fileSystem,
+      platform: platform,
+      processManager: processManager,
+      operatingSystemUtils: operatingSystemUtils,
+      browserFinder: findChromeExecutable,
+      logger: logger,
+    );
+    final FakeProcess process = FakeProcess();
+    final Chromium chrome = Chromium(
+      0,
+      chromeConnection,
+      chromiumLauncher: chromiumLauncher,
+      process: process,
+      logger: logger,
+    );
+    await chromiumLauncher.connect(chrome, false);
+    await chrome.close();
+    expect(logger.errorText, isEmpty);
+  });
+
+  testWithoutContext('chrome.close can recover if getTab throws a StateError', () async {
+    final BufferLogger logger = BufferLogger.test();
+    final FakeChromeConnectionWithTab chromeConnection = FakeChromeConnectionWithTab(
+      onGetTab: () {
+        throw StateError('Client is closed.');
+      },
+    );
+    final ChromiumLauncher chromiumLauncher = ChromiumLauncher(
+      fileSystem: fileSystem,
+      platform: platform,
+      processManager: processManager,
+      operatingSystemUtils: operatingSystemUtils,
+      browserFinder: findChromeExecutable,
+      logger: logger,
+    );
+    final FakeProcess process = FakeProcess();
+    final Chromium chrome = Chromium(
+      0,
+      chromeConnection,
+      chromiumLauncher: chromiumLauncher,
+      process: process,
+      logger: logger,
+    );
+    await chromiumLauncher.connect(chrome, false);
+    await chrome.close();
+    expect(logger.errorText, isEmpty);
+  });
+
+  test('Chromium close handles a SocketException when connecting to Chrome', () async {
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
     final BufferLogger logger = BufferLogger.test();
     final FakeChromeConnectionWithTab chromeConnection = FakeChromeConnectionWithTab();
     final ChromiumLauncher chromiumLauncher = ChromiumLauncher(
@@ -890,6 +952,7 @@ void main() {
     chromeConnection.throwSocketExceptions = true;
     await chrome.close();
   });
+<<<<<<< HEAD
 
   testWithoutContext('Chromium close handles a WebSocketException when closing the WipConnection', () async {
     final BufferLogger logger = BufferLogger.test();
@@ -907,6 +970,8 @@ void main() {
     expect(await chromiumLauncher.connect(chrome, false), equals(chrome));
     await chrome.close();
   });
+=======
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
 }
 
 /// Fake chrome connection that fails to get tabs a few times.
@@ -952,11 +1017,16 @@ typedef OnSendCommand = void Function(String);
 
 /// Fake chrome connection that returns a tab.
 class FakeChromeConnectionWithTab extends Fake implements ChromeConnection {
+<<<<<<< HEAD
   FakeChromeConnectionWithTab({
     OnSendCommand? onSendCommand,
     this.onGetTab,
     bool throwWebSocketException = false,
   }) : _tab = FakeChromeTab(onSendCommand, throwWebSocketException);
+=======
+  FakeChromeConnectionWithTab({OnSendCommand? onSendCommand, this.onGetTab})
+      : _tab = FakeChromeTab(onSendCommand);
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
 
   final FakeChromeTab _tab;
   void Function()? onGetTab;

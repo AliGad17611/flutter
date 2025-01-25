@@ -1019,7 +1019,11 @@ void main() {
     for (int level = 1; level <= 4; level++) {
       for (final bool strip in <bool>[true, false]) {
         for (final List<String> defines in const <List<String>>[<String>[], <String>['FOO=bar', 'BAZ=qux']]) {
+<<<<<<< HEAD
           for (final String buildMode in const <String>['profile', 'release', 'debug']) {
+=======
+          for (final String buildMode in const <String>['profile', 'release']) {
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
             for (final bool sourceMaps in const <bool>[true, false]) {
               test('Dart2WasmTarget invokes dart2wasm with renderer=$renderer, -O$level, stripping=$strip, defines=$defines, modeMode=$buildMode sourceMaps=$sourceMaps', () => testbed.run(() async {
                 environment.defines[kBuildMode] = buildMode;
@@ -1031,16 +1035,23 @@ void main() {
                 processManager.addCommand(FakeCommand(
                   command: <String>[
                     ..._kDart2WasmLinuxArgs,
+<<<<<<< HEAD
                     '-Ddart.vm.profile=${buildMode == 'profile'}',
                     '-Ddart.vm.product=${buildMode == 'release'}',
                     if (buildMode != 'debug') ...<String>[
                       '--extra-compiler-option=--delete-tostring-package-uri=dart:ui',
                       '--extra-compiler-option=--delete-tostring-package-uri=package:flutter',
                     ],
+=======
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
                     if (renderer == WebRendererMode.skwasm) ...<String>[
                       '--extra-compiler-option=--import-shared-memory',
                       '--extra-compiler-option=--shared-memory-max-pages=32768',
                     ],
+<<<<<<< HEAD
+=======
+                    '-Ddart.vm.${buildMode == 'release' ? 'product' : 'profile' }=true',
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
                     ...defines.map((String define) => '-D$define'),
                     if (renderer == WebRendererMode.skwasm) ...<String>[
                       '-DFLUTTER_WEB_AUTO_DETECT=false',
@@ -1055,8 +1066,12 @@ void main() {
                     '--extra-compiler-option=--depfile=${depFile.absolute.path}',
                     '-O$level',
                     if (strip && buildMode == 'release') '--strip-wasm' else '--no-strip-wasm',
+<<<<<<< HEAD
                     if (!sourceMaps) '--no-source-maps',
                     if (buildMode == 'debug') '--extra-compiler-option=--enable-asserts',
+=======
+                    if (!sourceMaps) '--extra-compiler-option=--no-source-maps',
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
                     '-o',
                     environment.buildDir.childFile('main.dart.wasm').absolute.path,
                     environment.buildDir.childFile('main.dart').absolute.path,

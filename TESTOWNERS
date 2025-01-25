@@ -336,7 +336,11 @@
 # skp_generator @Hixie
 # test_ownership @keyonghan
 # tool_host_cross_arch_tests @andrewkolos @flutter/tool
+<<<<<<< HEAD
 # tool_integration_tests @bkonyi @flutter/tool
+=======
+# tool_integration_tests @christopherfujino @flutter/tool
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
 # android_preview_tool_integration_tests @gmackall @flutter/android
 # android_java11_tool_integration_tests @gmackall @flutter/android
 # tool_tests @andrewkolos @flutter/tool

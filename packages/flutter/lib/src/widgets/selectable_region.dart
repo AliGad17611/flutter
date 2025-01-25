@@ -553,13 +553,17 @@ class SelectableRegionState extends State<SelectableRegion> with TextSelectionDe
           ),
           (TapAndPanGestureRecognizer instance) {
         instance
+<<<<<<< HEAD
           ..onTapTrackStart = _onTapTrackStart
           ..onTapTrackReset = _onTapTrackReset
+=======
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
           ..onTapDown = _startNewMouseSelectionGesture
           ..onTapUp = _handleMouseTapUp
           ..onDragStart = _handleMouseDragStart
           ..onDragUpdate = _handleMouseDragUpdate
           ..onDragEnd = _handleMouseDragEnd
+<<<<<<< HEAD
           ..onCancel = clearSelection
           ..dragStartBehavior = DragStartBehavior.down;
       },
@@ -574,6 +578,12 @@ class SelectableRegionState extends State<SelectableRegion> with TextSelectionDe
 
   void _onTapTrackReset() {
     _isShiftPressed = false;
+=======
+          ..onCancel = _clearSelection
+          ..dragStartBehavior = DragStartBehavior.down;
+      },
+    );
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
   }
 
   void _initTouchGestureRecognizer() {
@@ -608,7 +618,11 @@ class SelectableRegionState extends State<SelectableRegion> with TextSelectionDe
           ..onDragStart = _handleMouseDragStart
           ..onDragUpdate = _handleMouseDragUpdate
           ..onDragEnd = _handleMouseDragEnd
+<<<<<<< HEAD
           ..onCancel = clearSelection
+=======
+          ..onCancel = _clearSelection
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
           ..dragStartBehavior = DragStartBehavior.down;
       },
     );

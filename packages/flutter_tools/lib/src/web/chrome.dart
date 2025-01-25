@@ -519,6 +519,7 @@ class Chromium {
     // Send a command to shut down the browser cleanly.
     Duration sigtermDelay = Duration.zero;
     if (_hasValidChromeConnection) {
+<<<<<<< HEAD
       try {
         final ChromeTab? tab = await getChromeTabGuarded(chromeConnection,
             (_) => true, retryFor: const Duration(seconds: 1));
@@ -531,6 +532,15 @@ class Chromium {
       } on IOException {
         // Chrome is not responding to the debug protocol and probably has
         // already been closed.
+=======
+      final ChromeTab? tab = await getChromeTabGuarded(chromeConnection,
+            (_) => true, retryFor: const Duration(seconds: 1));
+      if (tab != null) {
+        final WipConnection wipConnection = await tab.connect();
+        await wipConnection.sendCommand('Browser.close');
+        await wipConnection.close();
+        sigtermDelay = const Duration(seconds: 1);
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
       }
     }
     chromeConnection.close();
@@ -564,7 +574,10 @@ class Chromium {
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
 /// Wrapper for [ChromeConnection.getTab] that will catch any [IOException] or
 /// [StateError], delegate it to the [onIoError] callback, and return null.
 ///

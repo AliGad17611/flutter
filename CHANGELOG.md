@@ -24,6 +24,7 @@ docs/releases/Hotfix-Documentation-Best-Practices.md
 
 INTERNAL NOTE
 -->
+<<<<<<< HEAD
 ## Flutter 3.27 Changes
 
 ### [3.27.1](https://github.com/flutter/flutter/releases/tag/3.27.1)
@@ -46,6 +47,10 @@ Initial stable release.
 - [flutter/154915](https://github.com/flutter/engine/pull/55366) - [macOS] Comply with the new Apple privacy manifest policy for the macOS Flutter engine framework and prevent the "Missing privacy manifest" warning when submitting a macOS app to the App Store.
 - [flutter/153471](https://github.com/flutter/flutter/issues/153471) - [Tool] Fixes RPCError crash when setting up log filtering for Android devices.
 
+=======
+## Flutter 3.24 Changes
+
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
 ### [3.24.3](https://github.com/flutter/flutter/releases/tag/3.24.3)
 - [dart 3.5.3 changelog](https://github.com/dart-lang/sdk/blob/stable/CHANGELOG.md#353---2024-09-11)
 - [flutter/154275](https://github.com/flutter/flutter/issues/154275) - [Android] Fixes performance issues on Android caused by engine threads not matching the core count.

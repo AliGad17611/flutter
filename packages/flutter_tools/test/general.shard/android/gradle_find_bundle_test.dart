@@ -524,6 +524,19 @@ void main() {
         message:
           "Gradle build failed to produce an .aab file. It's likely that this file "
           "was generated under ${project.android.buildDirectory.path}, but the tool couldn't find it."));
+<<<<<<< HEAD
+=======
+    expect(testUsage.events, contains(
+      TestUsageEvent(
+        'build',
+        'gradle',
+        label: 'gradle-expected-file-not-found',
+        parameters: CustomDimensions.fromMap(<String, String> {
+          'cd37': 'androidGradlePluginVersion: 8.3, fileExtension: .aab',
+        }),
+      ),
+    ));
+>>>>>>> 603104015dd692ea3403755b55d07813d5cf8965
     expect(fakeAnalytics.sentEvents, hasLength(1));
     expect(
       fakeAnalytics.sentEvents,
